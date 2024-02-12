@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="projectName">Project Name:</label>
+          <input class="form-control" type="text" id="projectName" formControlName="projectName">
+          <div *ngIf="createForm.get('projectName')?.hasError('nameIsForbidden')">
+            Project name cannot be "Test".
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input class="form-control" type="email" id="email" formControlName="email">
+          <div *ngIf="createForm.get('email')?.hasError('required')">
+            Email is required.
+          </div>
+          <div *ngIf="createForm.get('email')?.hasError('email')">
+            Please enter a valid email address.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="projectStatus">Project Status:</label>
+          <select class="form-control" id="projectStatus" formControlName="projectStatus">
+            <option value="Stable">Stable</option>
+            <option value="Critical">Critical</option>
+            <option value="Finished">Finished</option>
+          </select>
+          <div *ngIf="createForm.get('projectStatus')?.hasError('required')">
+            Project status is required.
+          </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit" [disabled]="createForm.invalid">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<router-outlet />
